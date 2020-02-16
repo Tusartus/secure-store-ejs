@@ -1,0 +1,40 @@
+
+<div class="container">
+
+        <h2>Filter Employee Records</h2>
+      <br>
+        <form class="form-inline mr-4" action="/search/" method="post">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="email2" class="mb-2 mr-sm-2">By Name:</label>
+          <input type="text" class="form-control mb-2 mr-sm-2" id="email2" placeholder="Enter name" name="fltrname">
+      </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="pwd2" class="mb-2 mr-sm-2">By price:</label>
+          <input type="text" class="form-control mb-2 mr-sm-2" id="pwd2" placeholder="230-1200" name="fltrprice">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+       <label for="sel1">By category:</label></div>
+       <select class="form-control" name="fltremptype" id="sel1">
+      
+           <% for (var i = 0; i < categories.length; i++)  { %>
+                   <option value="<%= categories[i].name %>"><%= categories[i].name %></option>
+           <% } %>
+      
+       </select>
+      </div>
+      
+      <div class="col-md-2">
+       <div class="form-group">
+        <button type="submit" class="form-control btn btn-info" name="submit">Submit</button>
+      </div>
+      </div>
+        </form>
+      
+      </div>
+      <br><br>
+      

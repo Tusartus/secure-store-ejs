@@ -1,0 +1,178 @@
+<% layout('layout') -%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+          
+      <% if (message.length > 0) { %>
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+           <strong>  <%= message %> </strong>
+
+        </div>
+        <% } %>
+              <% if (foundCart.items.length > 0 ) {
+                %>
+            <% for (var i = 0; i < foundCart.items.length; i++) { %>
+                <div class="list-group">
+                  <span class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <span><img class="product-image" src="/uploads/<%= foundCart.items[i].item.image %>"></span>
+                      </div>
+      
+                      <div class="col-md-6">
+                        <p class="list-group-item-heading"><%= foundCart.items[i].item.prodname %></p>
+                      </div>
+                      <div class="col-md-3">
+                        <p><%= foundCart.items[i].quantity %></p>
+                        <p><%= foundCart.items[i].price %></p>
+      
+                        <form method="post" action="/remove">
+                          <input type="hidden" name="item" value="<%= foundCart.items[i]._id %>">
+                          <input type="hidden" name="price" value="<%= foundCart.items[i].price %>">
+                          <button type="submit" type="button">Remove</button>
+                        </form>
+                      </div>
+      
+                    </div>
+                  </span>
+                </div>
+      
+                <% } %>
+
+    </div>
+
+
+
+    <div class="col-md-3"></div>
+
+    <div class="col-md-3">
+      <div class="list-group">
+       
+
+   <span class="list-group"> 
+    <h2>Total: $<span class="totalPrice"><%= foundCart.total %></span></h2>
+    <!-- Button to Open the Modal -->
+    
+    <div class="form-group">
+    <input type="hidden" value="<%= foundCart.total %>">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Pay with Stripe
+    </button>
+    </div>
+
+  </span>
+  </div>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title form-inline">
+                <div class="card-header">
+                    <div class="row">
+                    <div class="col-md-3 col-12 pt-2 p-2 bg-info">
+                      <h6 class="m-0 bg-info "><strong>Payment Details</strong></h6>
+                    </div>
+                    <div class="col-md-9 col-12 icons">
+                      <i class="fa fa-cc-visa fa-2x" aria-hidden="true"></i>
+                      <i class="fa fa-cc-mastercard fa-2x" aria-hidden="true"></i>
+                      <i class="fa fa-cc-discover fa-2x" aria-hidden="true"></i>
+                      <i class="fa fa-cc-amex fa-2x" aria-hidden="true"></i>
+                    </div>
+                  </div>
+              </div> 
+
+            </h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              
+              
+                  
+                      <form role="form" id="payment-form" action="/payment" method="POST">
+                        <input type="hidden" name="stripeMoney" value="<%= foundCart.total %>">
+                    <div class="form-group">
+                        <label for="validationTooltipCardNumber"><strong>CARD NUMBER</strong></label>
+                        <div class="input-group">
+                          <input type="text"name="cardNumber"  class="form-control border-right-0" id="validationTooltipCardNumber" placeholder="Card Number" >
+                          <div class="input-group-prepend">
+                              <span class="input-group-text rounded-right" id="validationTooltipCardNumber"><i class="fa fa-credit-card"></i></span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 ">
+                          <div class="form-group">
+                          <label for="exampleInputExpirationDate"><strong>EXPIRATION Month</strong></label>
+                           
+                          <input type="text" class="form-control"    name="expMonth" placeholder="MM"  id="exampleInputExpirationDate" >
+                          </div>
+                          </div>   
+                          <div class="col-md-6 ">
+                              <div class="form-group">
+                                  <label for="exampleInputExpirationDate"><strong>Expiration Year</strong></label>
+                          <input type="text" class="form-control"   name="expYear"  id="exampleInputExpirationDate" placeholder= "YY" >
+                        </div>
+                      </div> 
+
+                     
+                      <div class="col-md-12 ">
+                        <div class="form-group">
+                          <label for="exampleInputCvcCode"><strong>CVC CODE</strong></label>
+                          <input type="text" class="form-control" name="cvCode" id="exampleInputCvcCode" placeholder="CVC" >
+                      </div>
+                      </div>
+
+                    </div>
+                  
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Pay: $(<%= foundCart.total %>)</button>
+                    <div class="row" style="display:none;">
+                        <div class="col-md-12">
+                          <p class="payment-errors"></p>
+                        </div>
+                      </div>
+                </form>
+                
+          </div>
+          
+          <!-- Modal footer -->
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <% } else { %>
+    <h2>Cart is empty</h2>
+
+  <% } %>
+
+
+</div>
+
+
+
+
+
+
+
+ </div>
+ </div>
+
+
+    
+            
+
+

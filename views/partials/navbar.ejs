@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-md bg-info navbar-dark p-2">
+  <!-- Brand -->
+  <a class="navbar-brand display-4" href="/">Mystore </a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="dropdown show pull-right">
+    <a class="btn btn-secondary dropdown-toggle float-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      category
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+      <% for (var i = 0; i < categories.length; i++)  { %>
+          <a class="dropdown-item" href="/products/<%= categories[i]._id %>"><%= categories[i].name %></a>
+      <% } %>
+
+    </div>
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="/all">Product</a>
+      </li>
+      <% if (user && user.isAdmin === true) { %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/add-category" target="_self">Add category</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/add-product"  target="_self">Add product</a>
+        </li>
+       
+        <% } %>
+
+      <!--
+      <li class="nav-item">
+        <a class="nav-link" href="#">contact</a>
+      </li>
+       -->
+      </ul>
+  </div>
+
+
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+      <% if (!user) { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/signup">sign up</a>
+      </li>
+      <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+
+      
+
+      <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        <% } %>
+
+
+        <% if (user && user.isAdmin === false) { %>
+      <li class="nav-item">
+ 
+
+        <a class="nav-link" " href="/cart"><i class="fa fa-shopping-cart"  style="font-size:26px;background:red,color:white;"></i>&nbsp;&nbsp;      <%= cart %>     </a>
+   
+      </li>
+      <% } else  if   (user && user.isAdmin === true) { %>
+       
+        <li class="nav-item">
+ 
+
+          <a class="nav-link" > on admin page</a>
+     
+        </li>
+
+
+      <% } else { %>
+      <li class="nav-item">
+     
+        <a class="nav-link" " href="/emptycart"><i class="fa fa-shopping-cart"  style="font-size:26px;background:red,color:white;"></i>&nbsp;&nbsp;  0 </a>
+      
+      </li>
+       <% } %>
+    </ul>
+
+  </div>
+</nav>
+
+<hr>
+<br>

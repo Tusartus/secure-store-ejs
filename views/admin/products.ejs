@@ -1,0 +1,54 @@
+<% layout('navboil') %>
+
+
+<div class="jumbotron" id="navbar-gap">
+  <div class="container">
+    <h1 class="text-center"> See all added Products</h1>
+
+
+    </div>
+  </div>
+
+
+
+<div class="container">
+
+  <div class="row" id="searchResults">
+
+    <% for (var i = 0; i < products.length; i++) { %>
+    <div class="col-md-4 mr-3">
+      <a href="/product/<%= products[i]._id %>">
+        <div class="thumbnail">
+          <img src="/uploads/<%= products[i].image %>" height="300px">
+          <div class="caption">
+            <h3><%= products[i].prodname %></h3>
+
+            <p>$<%= products[i].price %></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+
+    <ul class="pagination">
+      <% if (currentPage !== 1 && previousPage !== 1) { %>
+          <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+      <% } %>
+      <% if (hasPreviousPage) { %>
+          <li class="page-item"><a class="page-link" href="?page=<%= previousPage %>"><%= previousPage %></a></li>
+      <% } %>
+      <li class="page-item active"><a class="page-link" href="?page=<%= currentPage %>"><%= currentPage %></a></li>
+      <% if (hasNextPage) { %>
+          <li class="page-item"><a class="page-link" href="?page=<%= nextPage %>"><%= nextPage %></a></li>
+      <% } %>
+      <% if (lastPage !== currentPage && nextPage !== lastPage) { %>
+          <li class="page-item"><a class="page-link" href="?page=<%= lastPage %>"><%= lastPage %></a></li>
+      <% } %>
+
+
+  </ul>
+
+
+
+  </div>
+</div>

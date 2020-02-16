@@ -1,0 +1,33 @@
+<% layout('navboil') %>
+
+<div class="container">
+  <div class="row">
+
+<% for (var i = 0; i < prods.length; i++) { %>
+<div class="col-md-4">
+	<figure class="card card-product">
+		<div class="img-wrap"><img src="/uploads/<%= prods[i].image %>"></div>
+		<figcaption class="info-wrap">
+				<h4 class="title"><%= prods[i].prodname %></h4>
+       	<p class="desc"> <%= prods[i].category %></p>
+				<div class="rating-wrap">
+					<div class="label-rating"> <p>$<%= prods[i].price %></p></div>
+
+				</div> <!-- rating-wrap.// -->
+		</figcaption>
+
+  </figure>
+</div> <!-- col // -->
+ <% } %>
+	<!--	<div class="bottom-wrap">
+			<a href="" class="btn btn-sm btn-primary float-right">Order Now</a>
+			<div class="price-wrap h5">
+				<span class="price-new">$1280</span> <del class="price-old">$1980</del>
+			</div> <!-- price-wrap.// -->
+	<!--	</div>
+-->
+    <!-- bottom-wrap.// -->
+
+
+</div>
+</div>
