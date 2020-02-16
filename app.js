@@ -40,7 +40,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/store1', {useNewUrlParser: true});
+mongoose.connect(' process.env.MONGODB_URI || mongodb://avocette01:avo95506>@ds163226.mlab.com:63226/heroku_4qq2r9ph', {useNewUrlParser: true});
 mongoose.connection.once('open',function(){
   console.log('connection has made');
 }).on('error',function(error){
