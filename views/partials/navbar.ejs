@@ -72,7 +72,7 @@
       <li class="nav-item">
  
 
-        <a class="nav-link" " href="/cart"><i class="fa fa-shopping-cart"  style="font-size:26px;background:red,color:white;"></i>&nbsp;&nbsp;  <sup><%= cart %> </sup>        </a>
+        <a class="nav-link" " href="/cart"><i class="fa fa-shopping-cart"  style="font-size:26px;background:red,color:white;"></i>&nbsp;&nbsp;  <%= cart %>        </a>
    
       </li>
       <% } else  if   (user && user.isAdmin === true) { %>
@@ -88,7 +88,7 @@
       <% } else { %>
       <li class="nav-item">
      
-        <a class="nav-link" " href="/emptycart"><i class="fa fa-shopping-cart"  style="font-size:26px;background:red,color:white;"></i>&nbsp;&nbsp; <sup> 0 </sup> </a>
+        <a class="nav-link" " href="/emptycart"><i class="fa fa-shopping-cart"  style="font-size:26px;background:red,color:white;"></i>&nbsp;&nbsp;  0  </a>
       
       </li>
        <% } %>
