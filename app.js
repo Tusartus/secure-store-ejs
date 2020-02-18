@@ -1,5 +1,6 @@
-var express  = require("express");
+var PORT = process.env.PORT || 4000;
 
+var express  = require("express");
 var bodyParser  = require("body-parser");
 var ejs  = require("ejs");
 var engine = require("ejs-mate");
@@ -40,7 +41,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('process.env.MONGODB_URI || mongodb://avocette01:avo95506@ds159100.mlab.com:59100/heroku_pjgqv6lt ', {useNewUrlParser: true});
+mongoose.connect('process.env.MONGODB_URI || mongodb://userpjgqv6lt:passwordpjgqv6lt@ds159100.mlab.com:59100/heroku_pjgqv6lt ', {useNewUrlParser: true});
 mongoose.connection.once('open',function(){
   console.log('connection has made');
 }).on('error',function(error){
@@ -123,7 +124,7 @@ app.use(authRoutes);
 //require('./routes/user')(app,passport);
 
 
-var PORT = process.env.PORT || 4000;
+
 
 
 app.listen(PORT, function() {
