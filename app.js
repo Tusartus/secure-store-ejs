@@ -17,7 +17,8 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var bcrypt = require('bcryptjs');
 
-
+const helmet = require('helmet')
+var compression = require('compression')
 
 var Category = require('./models/category');
 var Product = require('./models/product');
@@ -41,7 +42,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('process.env.MONGODB_URI || mongodb://userpjgqv6lt:passwordpjgqv6lt@ds159100.mlab.com:59100/heroku_pjgqv6lt', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/store1', {useNewUrlParser: true});
 mongoose.connection.once('open',function(){
   console.log('connection has made');
 }).on('error',function(error){
@@ -65,6 +66,10 @@ app.use(session({
     // store: new MongoStore({ url: secret.database, autoReconnect: true   /*ttl: 2 * 24 * 60 * 60*/})
 }));
 app.use(flash());
+app.use(helmet());
+app.use(compression());
+
+
 
 //passport middleware
 app.use(passport.initialize());
